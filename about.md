@@ -4,12 +4,11 @@ title: About
 permalink: /about/
 ---
 
-Some information about you!
+애플리케이션 프로그램과 DBMS 간의 SQL 인터페이스를 개발하고 있습니다.
 
 ### More Information
 
-A place to include any other types of information that you'd like to include about yourself.
 
 ### Contact me
 
-[email@domain.com](mailto:email@domain.com)
+[ddungcum@gmail.com](mailto:ddungcum@gmail.com)
