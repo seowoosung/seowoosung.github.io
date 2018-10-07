@@ -53,4 +53,33 @@ character encoding 과정
 (2) X window system에서는 함께 눌린 modifier key(Ctrl, Shift 등)을 분석해서 key code를 key symbol로 변환한다. key symbol은 'ㅅ','ㅆ',  'A’, ‘Left_alt’와 같은 character형태로 표현되는 symbol을 의미한다. 해당 key symbol은 GUI application이나 terminator로 전달되게 된다. 
 (3) terminal emulator에서는 해당 key symbol을 받아 설정된 charset encoding에 맞게 byte값으로 변환하게 된다. 예를 들어 terminal인코딩이 UTF-8이라면 terminator는 “EC 95 88(안) EB 88 95(녕)” 의 6byte로 변환 후  vim이나 tbsql처럼 terminator위에서 동작하는 application으로 전달된다. gedit과같이 terminal과 별도로 동작하는 application은 (3)의 과정이 application내부에서 일어나게 된다.
 (4) application에 encoding된 byte값이 저장된다.
+
 ![_config.yml]({{ site.baseurl }}/images/keyboardenc.png)
+
+locale, vim과 character encoding
+=============
+1. 변수 의미 설명
+- locale: 사용자의 언어, 국가뿐 아니라 사용자 인터페이스에서 사용자가 선호하는 사항을 지정한 매개 변수의 모임
+- LANG: LC_* 환경변수에 대한 default값을 지정. 즉 지정되지 않은 LC_*환경변수에 대해서 LANG값이 설정됨. LC_*이 설정되면 LANG셋팅을 오버라이딩함.
+- LC_ALL: LC_*환경변수 일괄 setting
+- terminal encoding: terminal옵션 들어가서 셋팅해주는 charset encoding
+- vim의 encoding: vim 자체의 인코딩, 즉 터미널로부터 전달받은 character들을 vim은 자신의 인코딩으로 해석하여 받아들이게 된다. 
+- vim의 fileencoding: file로 저장할 때 인코딩. 터미널에서 file -Bi file_name해보면 나오는 file의 인코딩을 결정한다.
+- vim의 termencoding: terminal로부터 전달받은 character들의 현재 인코딩. terminal의 인코딩을 vim에서 셋팅해주는게 아니라 단지 알려주는 역할을 할 뿐이다.
+- vim에 쓰여지는 character의 byte값은 locale이 아니라 terminal의 encoding을 따른다.
+2. vim 테스트
+vim열고 안녕을 입력후 닫은 후 hexdump값을 본 뒤 다시 열어서 글자가 깨지는지 확인한다.
+[상황1]terminal encoding: UTF8, vim enc: EUCKR, vim tenc, fenc = default
+- 입력화면: 깨짐
+- hexdump: EC 95 88 EB 88 95(UTF8)
+- vim다시열면 enc, fenc가 utf8로 변경돼있고 글자가 제대로 보임.
+[상황2]terminal encoding: UTF8, vim enc: EUCKR, vim tenc=UTF8, fenc = default
+- 입력화면: 잘보임
+- hexdump: EC 95 88 EB 88 95(UTF8)
+- vim다시열면 enc, fenc가 utf8로 변경돼있고 글자가 제대로 보임.
+[상황3]terminal encoding: UTF8, vim enc: EUCKR, vim tenc=EUCKR, fenc = default
+- 입력화면: ????(물음표값이 입력됨)
+- hexdump: 3f 3f 3f 3f (?의 아스키값)
+- vim다시열면 enc, fenc가 utf8로 변경돼있고 글자는 여전히 ????로 보임.
+3. 결론
+- 가능하면 vim의 enc와 terminal의 encoding이 동일해야 한다. 둘이 다를 경우 vim의 tenc를 treminal encoding값으로 셋팅해줘야 글자가 정상적으로 보인다. vim의 tenc와 실제 terminal인코딩이 다를경우 ?가 저장된다.
