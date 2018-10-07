@@ -129,3 +129,26 @@ tbsql이나 클라이언트에서 값을 insert후에 select한 상황에서 발
 따라서 tbsql의 경우 terminal의 인코딩과 TB_NLS_LANG값이 동일한지 확인해야 하고, client driver(JDBC등)를 이용해 구현한 app에서는 app자체의 인코딩 설정까지 확인해야 한다.
 (6) 결론
 - 글자가 깨진다면 터미널의 인코딩, source파일의 인코딩, TB_NLS_LANG, app의 인코딩이 동일한지 확인해봐야 한다.
+
+wide character란
+ =============
+1. 기본 개념
+-  전통적인 8비트 문자 보다 크기가 더 큰 컴퓨터 문자의 자료형으로 window의 MSVC(MS visual c++)에서는 내부적으로 unsigned short형을 사용하며, linux의 gcc는 int형을 사용한다. 
+- UCS를 만들기 시작하면서 8비트보다 큰 값을 이용하여 인코딩되는 문자를 저장할 자료형이 필요하게 돼서 개발됐다.
+- C/C++ 소스 파일은 보통 US-ASCII나 ISO-2022에 따르는 MBCS(multibyte character set)로 작성된다. (최근에는 UTF-8로도 작성한다.) C/C++컴파일러는 소스파일을 그대로 읽어들이기 때문에 특별한 표식이 없으면 해당 문자열을 유니코드로 인식할 수 없다. 이 문제를 해결하기 위해 c표준에서는 상수 앞에 "L"을 붙여서 문자열을 유니코드로 인식한 후 wchar_t 타입의 문자열로 저장하도록 컴파일러에 요구한다.
+- wide char자료형에는 보통 unicode값이 들어가지만 사용자가 강제로 EUCKR이나 UTF8로 인코딩된 값을 넣어줄 수도 있긴하다(컴파일 과정에서 warning발생)
+2. wide character 테스트 
+vim 열어서 c source file에 wchar_t text[] = L”안녕"을 입력하고 text에 저장된 값을 확인해보면, (참고로 '안'의 유니코드 값은 C5 48이고 ‘녕'의 유니코드 값은 B1 55 이다)
+[상황1] OS: linux(little endian), terminal encoding:UTF8, locale:UTF8
+48 C5 00 00 55 B1 00 00
+문자열을 UTF8로 인코딩하지 않고 유니코드값을 integer로 인식한 후 endian에 맞게 4 byte wchar_t자료형에 담긴것을 확인할 수 있다.
+[상황2] OS: linux(little endian), terminal encoding:EUCKR, locale:EUCKR, vim file encoding=EUCKR
+error: converting to execution character set.
+문자열을 유니코드로 인식하고자 했지만 유효한 값이 아닌 EUCKR로 인코딩된 값이라서 컴파일 에러가 난다.  만약 vim의 file encoding이 UTF8이라면 상황1과 동일하게 정상동작함.
+즉 L이 붙은 문자열에 대해서는 컴파일러는 해당 환경의 인코딩이 아니라 유니코드로 인식하려고 하며 유니코드 계열의 인코딩이 아니라면 컴파일 에러가 난다.
+3. 클라이언트와 wide char
+- wide character에는 환경의 인코딩에 상관없이 유니코드 값이 숫자값 그대로 담긴다. 예를 들어 client charset이 UTF8이고 server charset이 EUCKR인 경우 wide character형 문자열("안녕")이 들어온다면 8 byte공간에 
+48 C5 00 00 55 B1 00 00
+이 담기게 되고 linux(wchar가 4byte), little endian(뒤쪽바이트부터 읽어야함)을 고려하여 최종적으로 server에서는 4byte의
+BE C8 B3 C7 (euckr로 인코딩된 "안녕")
+형태로 저장되게 된다.
