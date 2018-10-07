@@ -53,3 +53,4 @@ character encoding 과정
 (2) X window system에서는 함께 눌린 modifier key(Ctrl, Shift 등)을 분석해서 key code를 key symbol로 변환한다. key symbol은 'ㅅ','ㅆ',  'A’, ‘Left_alt’와 같은 character형태로 표현되는 symbol을 의미한다. 해당 key symbol은 GUI application이나 terminator로 전달되게 된다. 
 (3) terminal emulator에서는 해당 key symbol을 받아 설정된 charset encoding에 맞게 byte값으로 변환하게 된다. 예를 들어 terminal인코딩이 UTF-8이라면 terminator는 “EC 95 88(안) EB 88 95(녕)” 의 6byte로 변환 후  vim이나 tbsql처럼 terminator위에서 동작하는 application으로 전달된다. gedit과같이 terminal과 별도로 동작하는 application은 (3)의 과정이 application내부에서 일어나게 된다.
 (4) application에 encoding된 byte값이 저장된다.
+![_config.yml]({{ site.baseurl }}/images/keyboardenc.png)
