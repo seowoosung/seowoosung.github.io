@@ -19,19 +19,19 @@ UTF8과 UTF16은 모두 유니코드라는 character set을 이용한 인코딩 
 
 다양한 한글 character encoding 종류
 =============
-# 1. EUC-KR  
+### 1. EUC-KR  
  ASCII 영역(127이하)은 그대로 1byte의 동일값을 사용한다. 한글은 주로 2byte로 표현되며 한글 완성형 인코딩이다. 한글 완성형은 '가'를 'ㄱ'와 'ㅏ'로 나누지 않고 '가' 자체가 하나의 byte값에 대응됨을 의미한다. 반대 표현으로는 한글 조합형이 있으며, 현재는 거의 사용되지 않는다.
 
-# 2. MSWIN949(CP949)  
+### 2. MSWIN949(CP949)  
  MS사가 도입한 인코딩 방식으로 한글은 주로 2byte로 표현한다. EUC-KR을 확장했기 때문에 하위 호환성이 있다. EUC-KR이 표현할 수 없는 한글 문자도 표현 가능하다.
 
-# 3. UTF-8  
+### 3. UTF-8  
  가변길이 유니코드 인코딩(1byte ~ 4byte)으로 ASCII 영역(127이하)은 그대로 1byte의 동일값을 사용한다. 한글은 주로 3byte로 표현한다. 인터넷 사이트에서 가장 많이 쓰이는 인코딩으로 엔디안에 상관없이 똑같이 읽을 수 있다는 장점이 있다. 또한 리눅스나 maxos에서는 운영체제 자체의 인코딩 형식을 UTF-8로 통일했다.(window는 레거시 호환을 위해 UCS-2와 병행)
 
-# 4. UCS-2 (Universal Character Set)  
+### 4. UCS-2 (Universal Character Set)  
  유니코드 이전에 사용된 국제 인코딩 규격으로 2byte로 이루어져 있다. 총 65,536개의 영역을 사용하고 이 영역을 BMP(기본 다국어 평면)이라고 한다. ASCII 영역(127이하) 문자들도 각각 2byte로 표현되므로 변환없이는 영문자도 호환되지 않는다.
  
-# 5. UTF-16  
+### 5. UTF-16  
  가변길이 유니코드 인코딩(2byte, 4byte)으로 2byte영역(BMP영역)까지는 UCS-2와 동일하나, 가변길이 부호화를 통해 4byte영역까지 확장함으로써 더 많은 문자를 표현할 수 있다. ASCII 영역(127이하) 문자들도 각각 2byte로 표현되므로 변환없이는 영문자도 호환되지 않는다.
 
 유니코드란
@@ -73,6 +73,7 @@ locale, vim과 character encoding
 - vim의 fileencoding: file로 저장할 때 인코딩. 터미널에서 file -Bi file_name해보면 나오는 file의 인코딩을 결정한다.
 - vim의 termencoding: terminal로부터 전달받은 character들의 현재 인코딩. terminal의 인코딩을 vim에서 셋팅해주는게 아니라 단지 알려주는 역할을 할 뿐이다.
 - vim에 쓰여지는 character의 byte값은 locale이 아니라 terminal의 encoding을 따른다.
+
 # 2. vim 테스트
 vim열고 안녕을 입력후 닫은 후 hexdump값을 본 뒤 다시 열어서 글자가 깨지는지 확인한다.
 {% highlight language %}
@@ -111,22 +112,26 @@ client driver는 TB_NLS_LANG으로 셋팅된(없으면 default값) charset으로
 > [참고] 티베로에서 다루는 charset이름은 EUCKR, UTF8, ASCII, MSWIN949, UTF16, SJIS, JA16SJIS, JA16SJISTILDE, JA16EUC, JA16EUCTILDE, VN8VN3, GBK, RU8pC866 등이 있다. 현재 티베로의 default server charset은 mswin949다. 오라클의 경우 UTF8 대신 AL32UTF8등을 사용하므로 관련내용은 오라클 문서를 참고 바람.
 
 # 3.  server ncharset
-- tibero server의 NCHAR, NVARCHAR컬럼에 저장되는 data의 charset을 의미한다. server의 charset과 다를 수 있으며, UTF8, UTF16 두가지 인코딩이 가능하다. 만약 N이 SQL 문자열 앞에 붙으면 그 뒤에 작은 따옴표로 감싼 부분은 변환하지 않고 그대로 저장한다. (ex: insert into tbl values(N’안녕');)
+- tibero server의 NCHAR, NVARCHAR컬럼에 저장되는 data의 charset을 의미한다. server의 charset과 다를 수 있으며, UTF8, UTF16 두가지 인코딩이 가능하다. 만약 N이 SQL 문자열 앞에 붙으면 그 뒤에 작은 따옴표로 감싼 부분은 변환하지 않고 그대로 저장한다. 
+> ex: insert into tbl values(N’안녕');
 
 # 4. character encoding 테스트 
 - “안녕"이라는 문자열을 insert할 한다. 참고로 안녕은 UTF8로 “EC 95 88(안) EB 88 95(녕)”, EUCKR로는 "BE C8(안) B3 E7(녕)".
 - insert한 문자열이 server에 어떻게 저장되는지 보기위해 dump값을 select한다.
 
-[상황1] terminal encoding이 EUCKR, client charset($TB_NLS_LANG)이 EUCKR, server charset이 UTF8일때
+**[상황1]** terminal encoding이 EUCKR, client charset($TB_NLS_LANG)이 EUCKR, server charset이 UTF8일때
 ![_config.yml]({{ site.baseurl }}/images/insert_euckr.png)
+
 server charset에 맞게 UTF8로 잘 변환돼서 들어간다.
 
-[상황2] terminal encoding이 UTF8, client charset($TB_NLS_LANG)이 EUCKR, server charset이 UTF8일때 
+**[상황2]** terminal encoding이 UTF8, client charset($TB_NLS_LANG)이 EUCKR, server charset이 UTF8일때 
 ![_config.yml]({{ site.baseurl }}/images/insert_error.png)
+
 client charset을 EUCKR로 인식하고 server charset에 맞게 변환하려 했으나 실제 input은 UTF8이기 때문에 변환이 실패하고 63(?의 아스키값)이 들어간다.
 
-[상황3] terminal encoding이 EUCKR, client charset($TB_NLS_LANG)이 UTF8, server charset이 UTF8일때  
+**[상황3]** terminal encoding이 EUCKR, client charset($TB_NLS_LANG)이 UTF8, server charset이 UTF8일때  
 ![_config.yml]({{ site.baseurl }}/images/insert_utf8.png)
+
 client charset과 server charset이 동일하기 때문에 input data가 변환없이 EUCKR인코딩 그대로 들어간다. 하지만 나중에 db에 저장된 문자열을 출력하고자 할때 server charset이랑 실제 저장된 encoding이랑 맞지 않기때문에 깨져버린다.  
 
 # 5. character set 문제발생시 확인 방법(tibero기준)
@@ -136,6 +141,7 @@ client charset과 server charset이 동일하기 때문에 input data가 변환�
 - 터미널 인코딩: terminal emulator마다 인코딩 셋팅정보가 있음.
 - source file의 인코딩: $file -Bi file_name
 - NLS_LANGUAGE(Date타입 출력과 관련, 이 외에는 상관없다): SQL>select * from nls_session_parameters;
+
 ## 2. 문제상황과 해결방법
 tbsql이나 클라이언트에서 값을 insert후에 select한 상황에서 발생하는 문제는 크게 두가지 케이스로 나뉜다. 참고로 charset conversion시에 유효하지 않은 범위의 byte값이 들어오면 ?로 변환된다. app내부에서는 charset conversion이 발생하지 않는 경우를 가정한다.  
 ### [상황 1] ???로 출력되는 경우  
@@ -143,6 +149,7 @@ tbsql이나 클라이언트에서 값을 insert후에 select한 상황에서 발
 ### [상황 2] 글자가 깨져서 출력되는 경우  
 데이터를 테이블에서 select해오는 과정에서 문제가 생겼을 가능성이 매우 높다. client에서는 server의 data를 client환경의 charset으로 변환한다. 이 과정에서 변환은 제대로 됐지만 변환된 charset이 클라이언트의 환경과 맞지 않을 가능성이 매우 높다.  
 따라서 tbsql의 경우 terminal의 인코딩과 TB_NLS_LANG값이 동일한지 확인해야 하고, client driver(JDBC등)를 이용해 구현한 app에서는 app자체의 인코딩 설정까지 확인해야 한다.  
+
 # 6. 결론
 - 글자가 깨진다면 터미널의 인코딩, source파일의 인코딩, TB_NLS_LANG, app의 인코딩이 동일한지 확인해봐야 한다.
 
@@ -153,16 +160,17 @@ wide character란
 - UCS를 만들기 시작하면서 8비트보다 큰 값을 이용하여 인코딩되는 문자를 저장할 자료형이 필요하게 돼서 개발됐다.
 - C/C++ 소스 파일은 보통 US-ASCII나 ISO-2022에 따르는 MBCS(multibyte character set)로 작성된다. (최근에는 UTF-8로도 작성한다.) C/C++컴파일러는 소스파일을 그대로 읽어들이기 때문에 특별한 표식이 없으면 해당 문자열을 유니코드로 인식할 수 없다. 이 문제를 해결하기 위해 c표준에서는 상수 앞에 "L"을 붙여서 문자열을 유니코드로 인식한 후 wchar_t 타입의 문자열로 저장하도록 컴파일러에 요구한다.
 - wide char자료형에는 보통 unicode값이 들어가지만 사용자가 강제로 EUCKR이나 UTF8로 인코딩된 값을 넣어줄 수도 있긴하다(컴파일 과정에서 warning발생)
+
 # 2. wide character 테스트 
 vim 열어서 c source file에 wchar_t text[] = L”안녕"을 입력하고 text에 저장된 값을 확인해보면, (참고로 '안'의 유니코드 값은 C5 48이고 ‘녕'의 유니코드 값은 B1 55 이다)  
 
-[상황1] OS: linux(little endian), terminal encoding:UTF8, locale:UTF8  
+###[상황1] OS: linux(little endian), terminal encoding:UTF8, locale:UTF8  
 
  48 C5 00 00 55 B1 00 00
 
 문자열을 UTF8로 인코딩하지 않고 유니코드값을 integer로 인식한 후 endian에 맞게 4 byte wchar_t자료형에 담긴것을 확인할 수 있다.  
 
-[상황2] OS: linux(little endian), terminal encoding:EUCKR, locale:EUCKR, vim file encoding=EUCKR
+###[상황2] OS: linux(little endian), terminal encoding:EUCKR, locale:EUCKR, vim file encoding=EUCKR
  error: converting to execution character set.  
 
 문자열을 유니코드로 인식하고자 했지만 유효한 값이 아닌 EUCKR로 인코딩된 값이라서 컴파일 에러가 난다.  만약 vim의 file encoding이 UTF8이라면 상황1과 동일하게 정상동작한다.    
