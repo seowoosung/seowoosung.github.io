@@ -130,7 +130,7 @@ client driver는 TB_NLS_LANG으로 셋팅된(없으면 default값) charset으로
 
 server charset에 맞게 UTF8로 잘 변환돼서 들어간다.
 
-**[상황2]** terminal encoding이 UTF8, client charset($TB_NLS_LANG)이 EUCKR, server charset이 UTF8일때 
+**[상황2]** terminal encoding이 UTF8, client charset($TB_NLS_LANG)이 EUCKR, server charset이 UTF8일때  
 ![_config.yml]({{ site.baseurl }}/images/insert_error.png)
 
 client charset을 EUCKR로 인식하고 server charset에 맞게 변환하려 했으나 실제 input은 UTF8이기 때문에 변환이 실패하고 63(?의 아스키값)이 들어간다.
@@ -177,7 +177,8 @@ vim 열어서 c source file에 wchar_t text[] = L”안녕"을 입력하고 text
 
 문자열을 UTF8로 인코딩하지 않고 유니코드값을 integer로 인식한 후 endian에 맞게 4 byte wchar_t자료형에 담긴것을 확인할 수 있다.  
 
-### [상황2] OS: linux(little endian), terminal encoding:EUCKR, locale:EUCKR, vim file encoding=EUCKR
+#### [상황2] OS: linux(little endian), terminal encoding:EUCKR, locale:EUCKR, vim file encoding=EUCKR  
+ 
  error: converting to execution character set.  
 
 문자열을 유니코드로 인식하고자 했지만 유효한 값이 아닌 EUCKR로 인코딩된 값이라서 컴파일 에러가 난다.  만약 vim의 file encoding이 UTF8이라면 상황1과 동일하게 정상동작한다.    
