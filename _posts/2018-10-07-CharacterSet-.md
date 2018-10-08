@@ -100,7 +100,7 @@ vim열고 안녕을 입력후 닫은 후 hexdump값을 본 뒤 다시 열어서 
 - vim다시열면 enc, fenc가 utf8로 변경돼있고 글자는 여전히 ????로 보임.
 {% endhighlight %}
 ### 3. 결론
-- 가능하면 vim의 enc와 terminal의 encoding이 동일해야 한다. 둘이 다를 경우 vim의 tenc를 treminal encoding값으로 셋팅해줘야 글자가 정상적으로 보인다. vim의 tenc와 실제 terminal인코딩이 다를경우 ?가 저장된다.
+- 가능하면 vim의 enc와 terminal의 encoding이 동일해야 한다. 둘이 다를 경우 vim의 tenc를 terminal encoding값으로 셋팅해줘야 글자가 정상적으로 보인다. vim의 tenc와 실제 terminal인코딩이 다를경우 ?가 저장된다.
 
 클라이언트와 character encoding
 =============
