@@ -125,7 +125,7 @@ client driver는 TB_NLS_LANG으로 셋팅된(없으면 default값) charset으로
 - “안녕"이라는 문자열을 insert할 한다. 참고로 안녕은 UTF8로 “EC 95 88(안) EB 88 95(녕)”, EUCKR로는 "BE C8(안) B3 E7(녕)".
 - insert한 문자열이 server에 어떻게 저장되는지 보기위해 dump값을 select한다.
 
-**[상황1]** terminal encoding이 EUCKR, client charset($TB_NLS_LANG)이 EUCKR, server charset이 UTF8일때
+**[상황1]** terminal encoding이 EUCKR, client charset($TB_NLS_LANG)이 EUCKR, server charset이 UTF8일때  
 ![_config.yml]({{ site.baseurl }}/images/insert_euckr.png)
 
 server charset에 맞게 UTF8로 잘 변환돼서 들어간다.
