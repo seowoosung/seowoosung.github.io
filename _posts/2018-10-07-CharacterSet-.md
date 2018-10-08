@@ -126,7 +126,7 @@ client driver는 TB_NLS_LANG으로 셋팅된(없으면 default값) charset으로
 - insert한 문자열이 server에 어떻게 저장되는지 보기위해 dump값을 select한다.
 
 **[상황1]** terminal encoding이 EUCKR, client charset($TB_NLS_LANG)이 EUCKR, server charset이 UTF8일때  
-![_config.yml]({{ site.baseurl }}/images/insert_euckr.png)
+![_config.yml]({{ site.baseurl }}/images/insert_utf8.png)
 
 server charset에 맞게 UTF8로 잘 변환돼서 들어간다.
 
@@ -136,7 +136,7 @@ server charset에 맞게 UTF8로 잘 변환돼서 들어간다.
 client charset을 EUCKR로 인식하고 server charset에 맞게 변환하려 했으나 실제 input은 UTF8이기 때문에 변환이 실패하고 63(?의 아스키값)이 들어간다.
 
 **[상황3]** terminal encoding이 EUCKR, client charset($TB_NLS_LANG)이 UTF8, server charset이 UTF8일때  
-![_config.yml]({{ site.baseurl }}/images/insert_utf8.png)
+![_config.yml]({{ site.baseurl }}/images/insert_euckr.png)
 
 client charset과 server charset이 동일하기 때문에 input data가 변환없이 EUCKR인코딩 그대로 들어간다. 하지만 나중에 db에 저장된 문자열을 출력하고자 할때 server charset이랑 실제 저장된 encoding이랑 맞지 않기때문에 깨져버린다.  
 
