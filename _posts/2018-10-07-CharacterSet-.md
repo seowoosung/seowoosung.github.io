@@ -96,8 +96,8 @@ vim열고 안녕을 입력후 닫은 후 hexdump값을 본 뒤 다시 열어서 
 # 3. 결론
 - 가능하면 vim의 enc와 terminal의 encoding이 동일해야 한다. 둘이 다를 경우 vim의 tenc를 treminal encoding값으로 셋팅해줘야 글자가 정상적으로 보인다. vim의 tenc와 실제 terminal인코딩이 다를경우 ?가 저장된다.
 
- 클라이언트와 character encoding
- =============
+클라이언트와 character encoding
+=============
 # 1. client charset
 - tibero client의 charset을 나타내며 default는 MSWIN949다. client charset을 설정하는 방법은 두가지가 있는데 첫번째는 OS 환경변수 셋팅하는 방법이 있다. 
 
@@ -147,7 +147,7 @@ tbsql이나 클라이언트에서 값을 insert후에 select한 상황에서 발
 - 글자가 깨진다면 터미널의 인코딩, source파일의 인코딩, TB_NLS_LANG, app의 인코딩이 동일한지 확인해봐야 한다.
 
 wide character란
- =============
+=============
 # 1. 기본 개념
 -  전통적인 8비트 문자 보다 크기가 더 큰 컴퓨터 문자의 자료형으로 window의 MSVC(MS visual c++)에서는 내부적으로 unsigned short형을 사용하며, linux의 gcc는 int형을 사용한다. 
 - UCS를 만들기 시작하면서 8비트보다 큰 값을 이용하여 인코딩되는 문자를 저장할 자료형이 필요하게 돼서 개발됐다.
