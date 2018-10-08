@@ -2,7 +2,7 @@
 layout: post
 title: Character set과 Character encoding 정리
 date: 2018-10-07
-categories: character encoding
+categories: [character set]
 ---
 
 기본개념
