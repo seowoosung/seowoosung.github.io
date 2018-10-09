@@ -11,6 +11,8 @@ categories: [DBMS/Distributed Transaction]
 ## Distributed Transaction Processing(DTP)
 DTP 아키텍처는 여러 Application이 Transaction Manager를 이용하여 여러 다른 Resource Manager가 제공하는 리소스를 공유 할 수있게 해주는 표준 아키텍처 또는 인터페이스를 의미한다.
 
+![_config.yml]({{ site.baseurl }}/images/dtp.png)
+
 ## Application Program(AP)
 DTP에서 Application program은 transaction boundaries를 정의하고 특정 transaction들을 수행한다. 
 
@@ -39,6 +41,8 @@ prepare메시지 중 하나라도 ok가 아니라면 전체 데이터베이스�
 
 ## XA
 XA는 DTP환경에서 TM과 RM사이에 통신을 담당하는 하나의 표준화된 interface를 의미한다. 
+
+![_config.yml]({{ site.baseurl }}/images/xa.png
 
 XA의 c언어 interface는 아래와 같다.
 
