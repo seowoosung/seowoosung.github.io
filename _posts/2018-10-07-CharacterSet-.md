@@ -113,6 +113,8 @@ vim열고 안녕을 입력후 닫은 후 hexdump값을 본 뒤 다시 열어서 
 - 두번째로는 tbdsn.tbr에 TB_NLS_LANG=EUCKR 로 셋팅해주는 방법이 있다. tbdsn.tbr의 설정이 OS 환경변수 설정을 오버라이딩한다.  
 client driver는 TB_NLS_LANG으로 셋팅된(없으면 default값) charset으로 character를 인식하며, server에 메시지를 보내거나 받을때 해당 charset을 기준으로 server charset과 변환이 일어난다. 참고로 TB_NLS_LANG이 유효하지 않은 값이면 tbsql 로그인할때 error가 발생한다.
 
+![_config.yml]({{ site.baseurl }}/images/tbdsn.png)
+
 ### 2. server charset
 - tibero server에 저장되는 data의 charset을 의미한다. 처음에 db를 구성할 때 설정가능하다. 경우에 따라 db를 다시 마운트하는 등 복잡한 과정을 거쳐서 charset을 변경할 수 있다.   
 > [참고] 티베로에서 다루는 charset이름은 EUCKR, UTF8, ASCII, MSWIN949, UTF16, SJIS, JA16SJIS, JA16SJISTILDE, JA16EUC, JA16EUCTILDE, VN8VN3, GBK, RU8pC866 등이 있다. 현재 티베로의 default server charset은 mswin949다. 오라클의 경우 UTF8 대신 AL32UTF8등을 사용하므로 관련내용은 오라클 문서를 참고 바람.
