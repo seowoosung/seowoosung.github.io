@@ -210,8 +210,8 @@ img {
   }
 }
 .site-category{
-  background: $blue;
-  border-top: 1px solid $border-color;
+  background: $white;
+  border-top: 1px solid $blue;
   margin:auto;
   padding:0;
   font-size:14px;
@@ -236,7 +236,7 @@ img {
   }
 
   .site-category li a{
-  background: $blue;
+  background: $white;
   display:block;
   font-weight:normal;
   line-height:50px;
@@ -271,7 +271,7 @@ img {
   }
 
   .site-category li li {
-  background: $blue;
+  background: $white;
   display:block;
   float:none;
   margin:0px;
