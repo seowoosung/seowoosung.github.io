@@ -111,7 +111,8 @@ vim열고 안녕을 입력후 닫은 후 hexdump값을 본 뒤 다시 열어서 
 ![_config.yml]({{ site.baseurl }}/images/export_nls.png)
 
 - 두번째로는 tbdsn.tbr에 셋팅해주는 방법이 있다. tbdsn.tbr의 설정이 OS 환경변수 설정을 오버라이딩한다.  
-client driver는 TB_NLS_LANG으로 셋팅된(없으면 default값) charset으로 character를 인식하며, server에 메시지를 보내거나 받을때 해당 charset을 기준으로 server charset과 변환이 일어난다. 참고로 TB_NLS_LANG이 유효하지 않은 값이면 tbsql 로그인할때 error가 발생한다.
+client driver는 TB_NLS_LANG으로 셋팅된(없으면 default값) charset으로 character를 인식하며, server에 메시지를 보내거나 받을때 해당 charset을 기준으로 server charset과 변환이 일어난다. 참고로 TB_NLS_LANG이 유효하지 않은 값이면 tbsql 로그인할때 error가 발생한다.  
+아래 그림은 $TB_HOME/client/config/tbdsn.tbr파일이다.
 
 ![_config.yml]({{ site.baseurl }}/images/tbdsn.png)
 
