@@ -40,7 +40,7 @@ Second Phase(또는 Commit Phase)에서는 TM이 참여한 모든 데이터베�
 prepare메시지 중 하나라도 ok가 아니라면 전체 데이터베이스에 롤백 메시지를 보낸다. 만약 모든 데이터베이스 노드로부터 prepare ok 메시지를 받으면 전체 데이터베이스에 커밋 메시지를 보낸다
 
 ## XA
-XA는 DTP환경에서 TM과 RM사이에 통신을 담당하는 하나의 표준화된 interface를 의미한다. 
+XA는 분산트랜잭션 환경에서 TM과 RM사이에 통신을 담당하는 하나의 표준화된 interface를 의미한다. Oracle, Tibero, DB2등 벤더사별로 해당 interface에 맞는 동작을 구현해서 제공하고 있다. 즉 xa_open의 경우 오라클은 내부적으로 oracle server에 connection을 맺는 코드를 구현하고, 티베로는 내부적으로 tibero server에 connection을 맺는 코드를 구현한다.
 
 ![_config.yml]({{ site.baseurl }}/images/xa.png
 
