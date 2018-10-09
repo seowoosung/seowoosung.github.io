@@ -1,8 +1,8 @@
 ---
 layout: post
-title: XA관련 용어 정리
+title: 분산 트랜잭션(Distributed Transaction) 관련 용어 정리
 date: 2018-10-09
-categories: [DBMS/XA]
+categories: [DBMS/Distributed Transaction]
 ---
 # 관련 용어
 ***
@@ -26,8 +26,4 @@ categories: [DBMS/XA]
 
 ## Two-Phase Commit Protocol
 
-# XA란?
-***
-## XA 정의
-
-## XA interface
+## XA
