@@ -1,6 +1,6 @@
 ---
 layout: post
-title: XA Transaction이란
+title: XA관련 용어 정리
 date: 2018-10-09
 categories: [DBMS/XA]
 ---
