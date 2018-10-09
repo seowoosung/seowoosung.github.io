@@ -41,6 +41,7 @@ prepare메시지 중 하나라도 ok가 아니라면 전체 데이터베이스�
 XA는 DTP환경에서 TM과 RM사이에 통신을 담당하는 하나의 표준화된 interface를 의미한다. 
 
 XA의 c언어 interface는 아래와 같다.
+
 | 함수 | 설명 |
 |:--------|:--------:|
 | xa_open | 리소스 매니저(Resource Manager)에 접속한다. |
