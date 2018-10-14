@@ -10,4 +10,19 @@ https://docs.docker.com/install/linux/docker-ce/ubuntu/#set-up-the-repository
 
 $ docker pull eosio/eos 실패하면 sudo붙이기
 
-cleos --wallet-url http://127.0.0.1:5555 wallet list keys에서 wallet찾을 수 없다는 message뜨면 reboot
+cleos --wallet-url http://127.0.0.1:5555 wallet list keys에서 
+Error 3120006: No available wallet뜸.
+
+rebooting하래서 rebooting 하니까 
+
+Error response from daemon: Container *** is not running 이 뜸
+시킨대로 sudo docker start *** 나 sudo docker commit ***해도 잘 안됨
+
+우선 sudo docker rm eosio로 eosio컨테이너 지운다음에 
+docker run부터 다시수행함. 그러니까 이전 상황까지는 왔는데
+
+cleos --wallet 이 명령어 대신 cleos wallet create한번 해봄 그랬더니 
+unable to connect to keosd~ 뜸
+
+우선 keosd 프로세스를 킬하고 cleos wallet list하면 원하는대로 Wallets:[]가 뜨긴하는데
+맞는지는 모르겠음 우선 넘어가야지.
