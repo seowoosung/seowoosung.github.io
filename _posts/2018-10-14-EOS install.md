@@ -6,15 +6,17 @@ categories: [Block Chain/EOS]
 ---
 ## 설치 전 준비사항
 ***
-EOSIO DApp 개발을 위해 우선 EOSIO의 node를 설치해봤다.  
+EOSIO DApp을 개발하기 위해 우선 EOSIO의 node를 설치해야한다.  
 오픈소스이기 때문에 직접 source를 다운받아서 빌드할 수 있지만, [EOSIO portal](https://developers.eos.io/eosio-home/docs)에서는 docker를 이용한 설치 가이드가 있어서 docker를 이용해 설치했다. 
+
 docker는 다양한 소프트웨어들을 컴파일해 모아놓은 컨테이너를 관리하는 프로그램이라고 생각하면 된다. 필요한 패키지들이 이미 컨테이너에 포함되어 있기 때문에 직접 소스를 빌드하는 것보다 쉽게 설치할 수 있다는 장점이 있다. VM에서 image파일로 OS설치하는 것과 비슷하다고 보면 된다.  
+
 docker를 이용한 설치과정은 [EOSIO portal](https://developers.eos.io/eosio-home/docs)에도 아주 자세히 설명이 써있지만 한번더 나름대로 정리해보았다. 
 
 현재 EOSIO는 window를 지원하지 않기 때문에 window 머신에서는 VM을 이용해 linux를 설치해야한다.  
 나도 Virtual Box에 ubuntu 18.04를 설치했다. -> [VM에 ubuntu설치하기](http://programmerchoo.tistory.com/37)  
 또 docker를 이용하기 때문에 docker 설치도 필요하다 -> [docker 설치](https://docs.docker.com/install/linux/docker-ce/ubuntu/#set-up-the-repository)   
-다들 링크에 있는대로만 따라하면 어렵지 않게 설치할 수 있다.
+링크에 있는대로 따라하면 어렵지 않게 설치할 수 있다.
 
 ## docker로 EOSIO container 설치하기
 ***
