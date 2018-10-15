@@ -64,6 +64,14 @@ root@ :#/ cleos --wallet-url http://127.0.0.1:5555 wallet list keys
 ![_config.yml]({{ site.baseurl }}/images/docker_bash.png)
 
 위의 그림처럼 수행하고나서 Error가 나지만 아직 Wallet생성을 안해서 난다고 예상되니 그 다음으로 넘어간다.
+
+이제 shell을 exit명령어로 나온다음에 Nodeos의 endpoints를 확인해보자.(아직 뭔지 모르겠음)
+{% highlight language %}
+woosung@woosungs:~$ curl http://localhost:7777/v1/chain/get_info
+{% endhighlight %}
+
+![_config.yml]({{ site.baseurl }}/images/check_end.png)
+
 이제 추가적으로 bashrc파일에 alias셋팅만 하면 끝이다.
 {% highlight language %}
 woosung@woosungs:~$ vim ~/.bashrc
