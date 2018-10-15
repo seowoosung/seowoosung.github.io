@@ -12,7 +12,7 @@ EOSIO DApp 개발을 위해 우선 EOSIO의 node를 설치해봤다.
 
 현재 EOSIO는 window를 지원하지 않기 때문에 window 머신에서는 VM을 이용해 linux를 설치해야한다.  
 나도 Virtual Box에 ubuntu 18.04를 설치했다. -> [VM에 ubuntu설치하기](http://programmerchoo.tistory.com/37)  
-또 docker를 이용하기 때문에 [docker 설치](https://docs.docker.com/install/linux/docker-ce/ubuntu/#set-up-the-repository)도 필요하다.  
+또 docker를 이용하기 때문에 docker 설치도 필요하다 -> [docker 설치](https://docs.docker.com/install/linux/docker-ce/ubuntu/#set-up-the-repository)   
 다들 링크에 있는대로만 따라하면 어렵지 않게 설치할 수 있다.
 
 ## docker로 EOSIO container 설치하기
