@@ -18,23 +18,60 @@ docker를 이용한 설치과정은 [EOSIO portal](https://developers.eos.io/eos
 
 ## docker로 EOSIO container 설치하기
 ***
+우선 작업할 directory를 만든다  
+{% highlight language %}
+woosung@woosungs:~$ mkdir contracts
+woosung@woosungs:~$ cd contracts
+{% endhighlight %}
 
-$ docker pull eosio/eos 실패하면 sudo붙이기
+그 다음에 docker에 미리 컴파일된 eosio의 image를 다운받는다. 아래그림처럼 permission 거부가 나면 sudo를 붙여준다.  
+{% highlight language %}
+woosung@woosungs:~$ docker pull eosio/eos
+{% endhighlight %}
 
-cleos --wallet-url http://127.0.0.1:5555 wallet list keys에서 
-Error 3120006: No available wallet뜸.
+![_config.yml]({{ site.baseurl }}/images/docker_pull.png)
 
-rebooting하래서 rebooting 하니까 
+이제 EOSIO의 node를 booting한다.  
+{% highlight language %}
+woosung@woosungs:~$ docker run --name eosio \
+  --publish 7777:7777 \
+  --publish 127.0.0.1:5555:5555 \
+  --volume /home/woosung/contracts:/home/woosung/contracts \
+  --detach \
+  eosio/eos \
+  /bin/bash -c \
+  "keosd --http-server-address=0.0.0.0:5555 & exec nodeos -e -p eosio --plugin eosio::producer_plugin --plugin eosio::history_plugin --plugin eosio::chain_api_plugin --plugin eosio::history_plugin --plugin eosio::history_api_plugin --plugin eosio::http_plugin -d /mnt/dev/data --config-dir /mnt/dev/config --http-server-address=0.0.0.0:7777 --access-control-allow-origin=* --contracts-console --http-validate-host=false --filter-on='*'"
+{% endhighlight %}
 
-Error response from daemon: Container *** is not running 이 뜸
-시킨대로 sudo docker start eosio하니까 다시 잘됨
+![_config.yml]({{ site.baseurl }}/images/docker_run.png)
 
-혹시 start해도 안되면,
-우선 sudo docker rm eosio로 eosio컨테이너 지운다음에 
-docker run부터 다시수행함. 그러니까 이전 상황까지는 왔는데
+이제 booting이 잘 돼서 block생성이 잘 됐는지 확인해본다. 
+{% highlight language %}
+woosung@woosungs:~$ docker log --tail 10 eosio
+{% endhighlight %}
 
-cleos --wallet 이 명령어 대신 cleos wallet create한번 해봄 그랬더니 
-unable to connect to keosd~ 뜸
+![_config.yml]({{ site.baseurl }}/images/docker_log.png)
 
-우선 keosd 프로세스를 킬하고 cleos wallet list하면 원하는대로 Wallets:[]가 뜨긴하는데
-맞는지는 모르겠음 우선 넘어가야지.
+block생성까지 잘 됐으니 지갑이 있나 확인해보자. shell을 오픈하고 해당 shell에서 명령어 수행을 할 것이다.
+{% highlight language %}
+woosung@woosungs:~$ docker exec -it eosio bash
+{% endhighlight %}
+쉘을 열었으니 지갑이 있는지 명령어를 입력해본다.
+{% highlight language %}
+root@ :#/ cleos --wallet-url http://127.0.0.1:5555 wallet list keys
+{% endhighlight %}
+
+![_config.yml]({{ site.baseurl }}/images/docker_bash.png)
+
+위의 그림처럼 수행하고나서 Error가 나지만 아직 Wallet생성을 안해서 난다고 예상되니 그 다음으로 넘어간다.
+이제 추가적으로 bashrc파일에 alias셋팅만 하면 끝이다.
+{% highlight language %}
+woosung@woosungs:~$ vim ~/.bashrc
+//아래의 코드를 추가한다
+alias cleos='docker exec -it eosio /opt/eosio/bin/cleos --url http://127.0.0.1:7777 --wallet-url http://127.0.0.1:5555'
+{% endhighlight %}
+
+만약 컴퓨터가 리부팅돼면 아래의 명령어로 docker부터 실행해야한다.
+{% highlight language %}
+woosung@woosungs:~$ docker start eosio
+{% endhighlight %}
