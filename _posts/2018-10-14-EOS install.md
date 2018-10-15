@@ -33,7 +33,8 @@ woosung@woosungs:~$ docker pull eosio/eos
 
 ![_config.yml]({{ site.baseurl }}/images/docker_pull.png)
 
-이제 EOSIO의 node를 booting한다.  
+이제 EOSIO의 node를 booting한다. 역시 permission에러가 나면 sudo를 붙여준다.  
+--volume이 있는 줄은 본인의 작업 directory를 입력하면 된다.
 {% highlight language %}
 woosung@woosungs:~$ docker run --name eosio \
   --publish 7777:7777 \
@@ -65,7 +66,7 @@ root@ :#/ cleos --wallet-url http://127.0.0.1:5555 wallet list keys
 
 ![_config.yml]({{ site.baseurl }}/images/docker_bash.png)
 
-위의 그림처럼 수행하고나서 Error가 나지만 아직 Wallet생성을 안해서 난다고 예상되니 그 다음으로 넘어간다.
+위의 그림처럼 Error가 난다. 아직 Wallet생성을 안해서 그런거 같으니 그 다음으로 넘어간다.
 
 이제 shell을 exit명령어로 나온다음에 Nodeos의 endpoints를 확인해보자.(아직 뭔지 모르겠음)
 {% highlight language %}
@@ -81,7 +82,7 @@ woosung@woosungs:~$ vim ~/.bashrc
 alias cleos='docker exec -it eosio /opt/eosio/bin/cleos --url http://127.0.0.1:7777 --wallet-url http://127.0.0.1:5555'
 {% endhighlight %}
 
-만약 컴퓨터가 리부팅돼면 아래의 명령어로 docker부터 실행해야한다.
+만약 컴퓨터를 리부팅하면 아래의 명령어로 docker부터 실행해야한다.
 {% highlight language %}
 woosung@woosungs:~$ docker start eosio
 {% endhighlight %}
