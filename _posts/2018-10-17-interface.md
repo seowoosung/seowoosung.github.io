@@ -13,21 +13,39 @@ categories: [ETC/OOP]
 
 이번 포스트에서는 이러한 감을 토대로 실제 개발상황과 연관지어서 객체지향 용어들에 대해 설명하고자 한다. 
 
-##Interface(인터페이스)
+## Interface(인터페이스)
 인터페이스는 제공자와 사용자가 서로 통신할 수 있는 유일한 통로 역할을 한다.
+
+예를 들어 calculator라는 library를 제공하는 제공자가 있다고 하자. 제공자는 library에 Sum이라는 함수를 구현해놓았다.   
+{% highlight c++ %}
+#include <iostream>
+
+int Sum(int a, int b) {
+ return a + b;
+}
+//calculator.h
+{% endhighlight %}
+
+사용자는 calculator library를 이용해 보인의 프로그램을 작성하려고 할 것이다. 사용자의 코드는 아래와 같다.
+
+{% highlight c++ %}
+#include <iostream>
+
+void main() {
+ int a = 10;
+ int b = 10;
+ std::cout << Sum(a, b) << std::endl;
+}
+{% endhighlight %}
 
 인터페이스라는 기능은 JAVA에만 있고 C++에는 없다.
 
 
-{% highlight c++ %}
-#include <iostream>
- 
-int a;
-{% endhighlight %}
 
-##Abstract Class(추상클래스)
 
-##Concrete Class(구상클래스)
+## Abstract Class(추상클래스)
 
-##is-a와 has-a
+## Concrete Class(구상클래스)
+
+## is-a와 has-a
 
