@@ -30,6 +30,7 @@ int Sum(int a, int b) {
 
 {% highlight c++ %}
 #include <iostream>
+#include "caculator.h"
 
 void main() {
  int a = 10;
