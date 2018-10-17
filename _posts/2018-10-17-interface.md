@@ -5,11 +5,9 @@ date: 2018-10-17
 categories: [ETC/OOP]
 ---
 
-객체지향 용어는 정확히 이해하기 정말 어려운것 같다.
-
 개발을 하다보면 수많은 새로운 개념이나 용어를 접하게 된다. 그런데 유난히 객체지향 용어는 마음에 딱 와닿지 않았다.  
 
-다행히도 C++과 JAVA를 이용해 개발을 하다보니 이러한 용어들에 대한 대략적인 감(?)을 잡을 수 있었다. 
+다행히 C++과 JAVA를 이용해 개발을 하다보니 이러한 용어들에 대한 대략적인 감(?)을 잡을 수 있었다. 
 
 이번 포스트에서는 이러한 감을 토대로 실제 개발상황과 연관지어서 객체지향 용어들에 대해 설명하고자 한다. 
 
@@ -26,7 +24,7 @@ int Sum(int a, int b) {
 //calculator.h
 {% endhighlight %}
 
-사용자는 calculator library를 이용해 보인의 프로그램을 작성하려고 할 것이다. 사용자의 코드는 아래와 같다.
+사용자는 calculator library를 이용해 보인의 프로그램을 작성하려고 할 것이다. 
 
 {% highlight c++ %}
 #include <iostream>
@@ -39,7 +37,21 @@ void main() {
 }
 {% endhighlight %}
 
-인터페이스라는 기능은 JAVA에만 있고 C++에는 없다.
+여기서 ***Sum(a,b)*** 을 하나의 인터페이스라고 볼 수 있다. 물론 이 예제에의 인터페이스는 되게 추상적인 인터페이스를 의미한다.
+
+그렇다면 JAVA에서 말하는 인터페이스는 어떤것을 의미할까? 
+
+JAVA는 추상적인 의미가 아니라 실제 코드상에서 인터페이스를 구현할 수 있도록 그 기능을 제공하고 있다.
+
+JAVA 코드를 통해 살펴보자
+
+{% highlight java %}
+interface Calculatable {
+    public void setOprands(int first, int second, int third) ;
+    public int sum(); 
+    public int avg();
+}
+{% endhighlight %}
 
 
 
