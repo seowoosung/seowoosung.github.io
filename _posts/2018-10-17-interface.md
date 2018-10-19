@@ -147,6 +147,7 @@ B, C회사는 더이상 PowerOn과 PowerOff를 본인들이 구현할 필요가 
 이제 abstract로 정의된 Alarm만 본인들이 직접 구현하면된다.
 
 B나 C회사의 코드는 아래와 같다
+{% highlight java %}
 class GalaxytWatch extends SmartWatch {
     public abstract void Alarm(int hour) {
      System.out.print("Galaxy의 Alarm이 울렸습니다");
