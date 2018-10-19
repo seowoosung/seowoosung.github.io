@@ -130,6 +130,7 @@ A회사는 B, C회사가 좀더 편하게 자사의 제품을 사용할 수 있�
 이제 기존에 제공하던 interface를 상속받은 추상클래스를 B, C회사에게 제공할 것이다.
 
 이러한 상황에서 A회사의 코드는 아래와 같다.
+
 {% highlight java %}
 abstract class SmartWatch implements ISmartWatch {
     public abstract void Alarm(int hour) ;
