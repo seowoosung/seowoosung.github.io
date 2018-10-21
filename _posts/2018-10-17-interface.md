@@ -2,7 +2,7 @@
 layout: post
 title: 객체지향 용어설명(인터페이스, 추상클래스) 
 date: 2018-10-17
-categories: [ETC/OOP]
+categories: [ETC]
 ---
 
 개발을 하다보면 새로운 개념이나 용어를 자주 접하게 된다. 
