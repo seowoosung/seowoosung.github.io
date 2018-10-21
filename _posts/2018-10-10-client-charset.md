@@ -2,7 +2,7 @@
 layout: post
 title: 클라이언트와 character encoding
 date: 2018-10-10
-categories: [ETC/Character Set]
+categories: [ETC]
 ---
 
 ### 1. client charset
