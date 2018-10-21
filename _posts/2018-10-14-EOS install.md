@@ -2,7 +2,7 @@
 layout: post
 title: EOS 설치하기
 date: 2018-10-14
-categories: [Block Chain/EOS]
+categories: [Block Chain]
 ---
 ## 설치 전 준비사항
 ***
