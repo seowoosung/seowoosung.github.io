@@ -2,7 +2,7 @@
 layout: post
 title: 분산 트랜잭션(Distributed Transaction) 관련 용어 정리
 date: 2018-10-09
-categories: [DBMS/Distributed Transaction]
+categories: [DBMS]
 ---
 
 출처 : [x/open문서](http://pubs.opengroup.org/onlinepubs/009680699/toc.pdf), [tmax technet](https://technet.tmaxsoft.com/upload/download/online/tibero/pver-20150504-000001/tibero_dev/ch04.html)
