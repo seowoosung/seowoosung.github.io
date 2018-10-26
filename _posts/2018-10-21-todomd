@@ -1,0 +1,9 @@
+---
+layout: post
+title: 앞으로 정리할 내용들
+date: 2018-10-21
+categories: [ETC]
+---
+
+부동소수점 오류
+c++ 에서 부모자식간 상속시 pointer 주소값 자체가 바뀌는 현상
