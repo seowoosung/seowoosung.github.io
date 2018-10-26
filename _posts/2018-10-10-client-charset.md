@@ -18,7 +18,7 @@ client driver는 TB_NLS_LANG으로 셋팅된(없으면 default값) charset으로
 
 ### 2. server charset
 - tibero server에 저장되는 data의 charset을 의미한다. 처음에 db를 구성할 때 설정가능하다. 경우에 따라 db를 다시 마운트하는 등 복잡한 과정을 거쳐서 charset을 변경할 수 있다.   
-> [참고] 티베로에서 다루는 charset이름은 EUCKR, UTF8, ASCII, MSWIN949, UTF16, SJIS, JA16SJIS, JA16SJISTILDE, JA16EUC, JA16EUCTILDE, VN8VN3, GBK, RU8pC866 등이 있다. 현재 티베로의 default server charset은 mswin949다. 오라클의 경우 UTF8 대신 AL32UTF8등을 사용하므로 관련내용은 오라클 문서를 참고 바람.
+> [참고] 티베로에서 다루는 charset이름은 EUCKR, UTF8 등이 있다. 전체 목록을 확인하고 싶으면 tibero설치후 TB_HOME잡고 $tbboot -C 명령어를 입력하면 된다. 현재 티베로의 default server charset은 mswin949다. 오라클의 경우 UTF8 대신 AL32UTF8등을 사용하므로 관련내용은 오라클 문서를 참고 바람.
 
 ### 3.  server ncharset
 - tibero server의 NCHAR, NVARCHAR컬럼에 저장되는 data의 charset을 의미한다. server의 charset과 다를 수 있으며, UTF8, UTF16 두가지 인코딩이 가능하다. 만약 N이 SQL 문자열 앞에 붙으면 그 뒤에 작은 따옴표로 감싼 부분은 변환하지 않고 그대로 저장한다. 
