@@ -54,3 +54,10 @@ settings.py를 수정했으면 shell에 아래와 같이 입력한다
 $ python manage.py migrate
 
 위의 명령어가 정상 수행되면 phpmyadmin페이지에서 table들이 생성된것을 볼 수 있다.
+
+django를 관리하기 위한 user를 생성한다.
+$ python manage.py createsuperuser --username=tibero --email=ddungcum@gmail.com
+
+이제 해당 user로 localhost:8000/admin 페이지에 로그인할 수 있다.
+
+
