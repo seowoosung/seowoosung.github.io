@@ -81,8 +81,10 @@ urlpatterns = [
 ];
 추가하고 child의 views.py에 가서
 def index(request): 
-    return HttpResponse('HELLO FROM POSTS')
-    
+    return HttpResponse('HELLO FROM POSTS') 
+혹은
+    return render(request, 'posts/index.html')
+
 추가한다음에 
 $python manager.py runserver 
 하고 localhost:8000/posts/에 가면 'HELLO FROM POSTS'를 볼 수 있음. 참고로 영상에서는 path대신 url함수를 사용함.
