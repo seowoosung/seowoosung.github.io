@@ -60,4 +60,29 @@ $ python manage.py createsuperuser --username=tibero --email=ddungcum@gmail.com
 
 이제 해당 user로 localhost:8000/admin 페이지에 로그인할 수 있다.
 
+### 4. django 기초
+* django에서 새로운 application을 만드는 방법
+$ python manager.py startapp posts
+하면 posts 폴더가 생김
+parent의 settings.py에서
+  INSTALLED_APPS = [
+  'posts', 
+추가하고 parent의 urls.py에 가서
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('posts/', include('posts.urls')),
+] 
+추가하고 child(posts)의 urls.py에 가서
+urlpatterns = [
+    path('', views.index, name='index')
+];
+추가하고 child의 views.py에 가서
+def index(request): 
+    return HttpResponse('HELLO FROM POSTS')
+    
+추가한다음에 
+$python manager.py runserver 
+하고 localhost:8000/posts/에 가면 'HELLO FROM POSTS'를 볼 수 있음. 참고로 영상에서는 path대신 url함수를 사용함.
+
+
 
