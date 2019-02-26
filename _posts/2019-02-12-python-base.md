@@ -67,12 +67,15 @@ $ python manager.py startapp posts
 parent의 settings.py에서
   INSTALLED_APPS = [
   'posts', 
+]
 추가하고 parent의 urls.py에 가서
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('posts/', include('posts.urls')),
 ] 
 추가하고 child(posts)의 urls.py에 가서
+
 urlpatterns = [
     path('', views.index, name='index')
 ];
