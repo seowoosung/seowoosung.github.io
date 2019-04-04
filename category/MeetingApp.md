@@ -2,5 +2,5 @@
 
 layout: category
 title: Python
-permalink: '/Python'
+permalink: '/MeetingApp'
 ---
