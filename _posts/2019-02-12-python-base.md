@@ -2,7 +2,7 @@
 layout: post
 title: python 기초 공부
 date: 2018-10-21
-categories: [Python]
+categories: [ETC]
 ---
 
 ## python 공부 시작할때 유용한 자료
