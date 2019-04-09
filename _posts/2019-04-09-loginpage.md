@@ -31,7 +31,7 @@ class LoginFormView(FormView):
 이제 실제 화면을 출력해주는 login.html을 작성한다. {{ form.as_p }}는 위의 LoginForm을 렌더링한 부분이다. as_p는 렌더링 결과를 <p>태그로 감싼다.
 ```html
 <form action="/app/login" method="post">
-   {% csrf_token %}
+   {{ "{% csrf_token" }} %}
    {{ form.as_p }}
     <input type="submit" value="로그인"/>
 </form>
