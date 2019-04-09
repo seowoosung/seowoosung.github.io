@@ -7,7 +7,7 @@ categories: [MeetingApp]
 
 ## login 페이지 만들기
 로그인 화면은 form 태그를 사용해서 구성한다. django에서 form태그를 쉽게 구성할 수 있도록 제공하는 FormView를 이용한다.
-<h3>
+```vim
 #loginform.py
 
 from django import forms
@@ -27,7 +27,7 @@ class LoginFormView(FormView):
   
   def form_valid(self, form):
     return super(LoginFormView, self).form_valid(form) #유효한 폼 데이터로 처리하는 로직.(success_url로 리다이렉션됨)
-</h3>
+```
 이제 실제 화면을 출력해주는 login.html을 작성한다. {{ form.as_p }}는 위의 LoginForm을 렌더링한 부분이다. as_p는 렌더링 결과를 <p>태그로 감싼다.
 {% highlight vim %}
 <form action="/app/login" method="post">
