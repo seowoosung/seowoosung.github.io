@@ -18,7 +18,7 @@ STATICFILES_DIRS = [
 
 template파일에서 assets/css/style.css를 사용하는 예시는 아래와 같다. 
 
-```vim
+```html
 {% load staticfiles %}
 <link href="{% static 'css/style.css' %}" rel="stylesheet">
 ```
@@ -28,7 +28,7 @@ settings.py의 TEMPLATES의 'DIRS'에 os.path.join(CONTENT_DIR, 'templates'),
 를 추가한다. 사용할때는 templates디렉토리로부터의 상대위치를 사용하면 된다. 본 프로젝트에서는 page.html을 상속받아서 나머지 페이지들을 구성할 예정이다. 
 page.html은 content/templates/layouts/default/page.html에 위치해있다.
 
-```vim
+```html
 {% extends 'layouts/default/page.html' %}
 ```
 
@@ -59,7 +59,7 @@ LOCALE_PATHS = (
 python 파일에서 사용될경우 ('word', _('Word')) 처럼 사용한다.
 템플릿 파일의 경우 {{ _('Word') }} 로 사용하면 된다. 아래처럼 i18n태그를 이용할 수 도 있다.
 
-```vim
+```html
 {% load i18n %}
 {% trans 'Word' %}
 ```
@@ -83,7 +83,7 @@ python manage.py compilemessages
 bootstrap을 사용하기 위해서는 
 settings.py의 INSTALLED_APPS에 'bootstrap4'를 추가한다. 실제 template에서는 아래처럼 사용한다.
 
-```vim
+```html
 <head>
 <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 </head>
