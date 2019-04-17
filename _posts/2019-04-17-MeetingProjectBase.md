@@ -18,9 +18,11 @@ STATICFILES_DIRS = [
 
 template파일에서 assets/css/style.css를 사용하는 예시는 아래와 같다. 
 
-```python
-  {% load staticfiles %}
-  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+```html
+{% raw %}
+{% load staticfiles %}
+<link href="{% static 'css/style.css' %}" rel="stylesheet">
+{% endraw %}
 ```
 
 만약 template을 전역적으로 사용하고 싶으면 content/templates를 만들고 
@@ -29,7 +31,9 @@ settings.py의 TEMPLATES의 'DIRS'에 os.path.join(CONTENT_DIR, 'templates'),
 page.html은 content/templates/layouts/default/page.html에 위치해있다.
 
 ```html
+{% raw %}
 {% extends 'layouts/default/page.html' %}
+{% endraw %}
 ```
 
 ## 다국어지원
@@ -60,8 +64,10 @@ python 파일에서 사용될경우 ('word', _('Word')) 처럼 사용한다.
 템플릿 파일의 경우 {{ _('Word') }} 로 사용하면 된다. 아래처럼 i18n태그를 이용할 수 도 있다.
 
 ```html
+{% raw %}
 {% load i18n %}
 {% trans 'Word' %}
+{% endraw %}
 ```
 
 이제 실제로 변환 파일을 수정할 차례다. 위의 예시에서처럼 다국어 지원 구문을 사용한 상태에서 아래의 명령어를 쉘에서 수행한다.
@@ -84,12 +90,14 @@ bootstrap을 사용하기 위해서는
 settings.py의 INSTALLED_APPS에 'bootstrap4'를 추가한다. 실제 template에서는 아래처럼 사용한다.
 
 ```html
+{% raw %}
 <head>
 <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 </head>
 
 <script src="{% static 'vendor/jquery/jquery-3.3.1.min.js' %}"></script>
 <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+{% endraw %}
 ```
 
 bootstrap에서 필요한 자바스크립트를 추가하고, bootstrap.min.js를 사용하기위해 jquery 스크립트도 추가한다.
