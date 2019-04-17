@@ -18,7 +18,7 @@ STATICFILES_DIRS = [
 
 template파일에서 assets/css/style.css를 사용하는 예시는 아래와 같다. 
 
-```html
+```python
 {% load staticfiles %}
 <link href="{% static 'css/style.css' %}" rel="stylesheet">
 ```
