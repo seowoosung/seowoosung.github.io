@@ -11,3 +11,7 @@ $ iptables -I INPUT 1 -p tcp --dport `포트번호` -j ACCEPT
 $ iptables -D INPUT -p tcp --dport `포트번호` -j ACCEPT
 * 리눅스 개방한 포트 확인
 $ iptables -L | grep ACCEPT
+
+* process에 gdb 붙으려고 할때 ptrace permission에러가 나면 아래 명령어 수행
+$ sudo bash
+# echo 0 > /proc/sys/kernel/yama/ptrace_scope
