@@ -91,3 +91,8 @@ pdb와 매우 비슷한데 좀더 사용하기 편리하다. pdb가 들어가던
 한번에 두 client 접속을 하면 안되는것 같고, page가 안뜰때 브라우저(혹은 브라우저탭)을 껐다가 키면 잘 동작한다. 
 
 server의 ip, port를 바꿔주고 싶으면 launch.json의 Django항목을 찾아 arg에 해당 ip와 port를 추가해주면 된다.
+
+virtualenv 내부의 app을 디버깅 하는경우 python을 명확하게 명시해주지 않으면 debug시에 default python이 불려서 제대로 수행되지 않는다.
+이 경우 ModuleNotFoundError: No module named 'django' 등의 에러가 발생한다.
+
+이를 해결하기 위해 launch.json파일에 "pythonPath" : "${env:HOME}/.virtualenvs/py36/bin/python"을 추가해줘야한다. 참고로 py36은 내 virtualenv의 경로다.
