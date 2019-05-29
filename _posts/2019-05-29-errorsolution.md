@@ -1,6 +1,6 @@
 ---
 layout: post
-title: linux에서 network 문제 있을때
+title: linux 문제상황 해결책 모음
 date: 2019-05-29
 categories: [ETC]
 ---
