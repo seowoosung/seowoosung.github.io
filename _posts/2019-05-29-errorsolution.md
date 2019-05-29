@@ -12,3 +12,8 @@ categories: [ETC]
 
 * [문제2] 랜카드 동작은 확인됐지만 인터넷 연결이 안되는 경우
 * [해결] broadcom의 경우 별도의 driver설치가 필요한것으로 보임. $ sudo apt-get install firmware-b43-installer
+
+### 기계식 키보드 한글 셋팅
+* ibus 한글 다운로드는 첫번째 링크를, 기계식 키보드의 Alt_R을 Hangul로 설정하는 부분은 두번째 링크를 참조
+*https://dgkim5360.tistory.com/entry/how-to-install-ibus-hangul-for-ubuntu-desktop
+*https://hanmaruj.tistory.com/6
