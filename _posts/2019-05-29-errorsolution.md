@@ -15,5 +15,5 @@ categories: [ETC]
 
 ### 기계식 키보드 한글 셋팅
 * ibus 한글 다운로드는 첫번째 링크를, 기계식 키보드의 Alt_R을 Hangul로 설정하는 부분은 두번째 링크를 참조
-*https://dgkim5360.tistory.com/entry/how-to-install-ibus-hangul-for-ubuntu-desktop
-*https://hanmaruj.tistory.com/6
+* https://dgkim5360.tistory.com/entry/how-to-install-ibus-hangul-for-ubuntu-desktop
+* https://hanmaruj.tistory.com/6
