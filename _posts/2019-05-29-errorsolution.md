@@ -20,3 +20,4 @@ categories: [ETC]
 
 ### ubuntu18.04 LTS 부팅시에 멈춤 현상
 * $ sudo vim /etc/default/grub에서 quiet splash -> nomodeset quiet splash 로 바꾸니 일단은 잘 돌아감
+* [참고링크]https://ggogun.tistory.com/entry/ubuntu-black-screen-soslved
