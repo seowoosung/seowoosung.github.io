@@ -17,3 +17,6 @@ categories: [ETC]
 * ibus 한글 다운로드는 첫번째 링크를, 기계식 키보드의 Alt_R을 Hangul로 설정하는 부분은 두번째 링크를 참조
 * https://dgkim5360.tistory.com/entry/how-to-install-ibus-hangul-for-ubuntu-desktop
 * https://hanmaruj.tistory.com/6
+
+### ubuntu18.04 LTS 부팅시에 멈춤 현상
+* $ sudo vim /etc/default/grub에서 quiet splash -> nomodeset quiet splash 로 바꾸니 일단은 잘 돌아감
