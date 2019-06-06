@@ -14,6 +14,8 @@ categories: [ETC]
 ## 환경구성
 IDE: Visual Studio Code 사용
 
+### ubuntu14.04에서 python 3.6설치하기
+* http://devopspy.com/python/install-python-3-6-ubuntu-lts/
 ### 1. mysql 설치하기
 django에서 sqlite대신 mysql 사용할 예정. mysql 깔다가 OSError나면서 안되면 아래 명령어 수행하기
 ```bash
