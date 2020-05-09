@@ -3,10 +3,11 @@ markdown:         kramdown
 highlighter:      rouge
 
 # Setup
-title:            Developer
-tagline:          'A Jekyll theme'
+title:            Woosung
+tagline:          'developer blog'
 description:      'django, database, ubuntu, android, reactjs'
 url:              https://seowoosung.github.io
+githuburl:        https://github.com/seowoosung/
 baseurl:          ''
                   # the optional subpath of your site, e.g. "/blog"
                   # NB: This applies to all pages in your Jekyll site.
@@ -18,7 +19,7 @@ author:
   name:           'Woosung Seo'
   url:            https://seowoosung.github.io
 
-paginate:         5
+paginate:         3
 # paginate_path:    '/page:num'
                     # Or '/blog/page:num' if you want to move your index pages
 

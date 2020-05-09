@@ -3,6 +3,7 @@ layout: post
 title: Django 기본 셋팅하기
 date: 2019-04-17
 categories: [Django]
+excerpt_separator:  <!--more-->
 ---
 
 ## 파일(static, template) 관리하기
@@ -10,36 +11,37 @@ django 프로젝트 전역적으로 사용할 file들은 staticfiles기능을 �
 우선 static file 디렉토리로 사용할 content/assets를 생성한다. 
 그다음 settings.py에 아래의 구문을 추가한다.
 
-```vim
+{% highlight python %}
 STATICFILES_DIRS = [
   os.path.join(CONTENT_DIR, 'assets'),
 ]
-```
+{% endhighlight %}
 
 template파일에서 assets/css/style.css를 사용하는 예시는 아래와 같다. 
 
-```html
+{% highlight html %}
 {% raw %}
 {% load staticfiles %}
 <link href="{% static 'css/style.css' %}" rel="stylesheet">
 {% endraw %}
-```
+{% endhighlight %}
+<!--more-->
 
 만약 template을 전역적으로 사용하고 싶으면 content/templates를 만들고 
 settings.py의 TEMPLATES의 'DIRS'에 os.path.join(CONTENT_DIR, 'templates'),
 를 추가한다. 사용할때는 templates디렉토리로부터의 상대위치를 사용하면 된다. 본 프로젝트에서는 page.html을 상속받아서 나머지 페이지들을 구성할 예정이다. 
 page.html은 content/templates/layouts/default/page.html에 위치해있다.
 
-```html
+{% highlight html %}
 {% raw %}
 {% extends 'layouts/default/page.html' %}
 {% endraw %}
-```
+{% endhighlight %}
 
 ## 다국어지원
 우선 settings.py에 다국어 지원 관련 설정을 해준다
 
-```vim
+{% highlight python %}
 from django.utils.translation import ugettext_lazy as _
 #미들웨어 추가
 MIDDLEWARE = [
@@ -57,7 +59,7 @@ LANGUAGES = [
 LOCALE_PATHS = (
     os.path.join(CONTENT_DIR, 'locale'),
 )
-```
+{% endhighlight %}
 
 다국어 지원은 템플릿 파일이나 python 파일 모두에서 사용될 수 있다.
 python 파일에서 사용될경우 ('word', _('Word')) 처럼 사용한다.
