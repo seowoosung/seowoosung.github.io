@@ -4,6 +4,8 @@ title: Django 기본 셋팅하기
 date: 2019-04-17
 categories: [Django]
 excerpt_separator:  <!--more-->
+tags: 
+  - Django
 ---
 
 ## 파일(static, template) 관리하기

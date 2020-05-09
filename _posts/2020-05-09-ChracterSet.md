@@ -33,7 +33,7 @@ UTF8과 UTF16은 모두 유니코드라는 character set을 이용한 인코딩 
 
  한글의 경우 UTF-8 완성형/조합형 두가지 형식으로 표현할 수 있다. "안녕"을 완성형(NFC)으로 표현하는 경우 **“EC 95 88(안) EB 88 95(녕)”**이 되며, 조합형(NFD)으로 표현하는 경우 **“E1 84 8B(ㅇ) E1 85 A1(ㅏ) E1 84 82(ㄴ) E1 84 82(ㄴ) E1 85 A7(ㅕ) E1 84 8B(ㅇ)”** 이 된다. 
 
-> Mac os는 키보드 입력을 제외한 한글을 조합형으로 저장하고 있다. 이로인해 Mac에서 저장한 파일을 DBMS에서 order by할 경우 무조건 앞에 위치하는 현상이 발생하기도 한다.(조합형 한글의 자음 encoding값이 완성형 한글 encoding값보다 항상 작기 때문에) 현재 DBMS 에는 한글 NFD와 NFC를 동시에 order by하는 기능이 없기때문에 python의 sorted를 이용해야 정상적으로 정렬가능하다.
+> Mac os는 키보드 입력을 제외하고는 한글을 조합형으로 저장하고 있다. 이로인해 Mac에서 저장한 파일을 DBMS에서 order by할 경우 무조건 앞에 위치하는 현상이 발생하기도 한다.(조합형 한글의 자음 encoding값이 완성형 한글 encoding값보다 항상 작기 때문에) 현재 DBMS 에는 한글 NFD와 NFC를 동시에 order by하는 기능이 없기때문에 python의 sorted를 이용해야 정상적으로 정렬가능하다.
 
 <!--more-->
 #### 4. UCS-2 (Universal Character Set)  

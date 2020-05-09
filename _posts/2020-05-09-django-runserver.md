@@ -3,6 +3,8 @@ layout: post
 title: Django 프레임워크 설치 및 실행
 categories: [Architecture]
 excerpt_separator:  <!--more-->
+tags: 
+  - Django
 ---
 
 django는 python으로 구성된 웹 애플리케이션 프레임워크로 front/backend 구현이 가능하며, 
