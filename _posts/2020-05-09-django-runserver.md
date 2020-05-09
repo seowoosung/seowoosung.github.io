@@ -2,6 +2,7 @@
 layout: post
 title: Django 프레임워크 설치 및 실행
 categories: [Architecture]
+excerpt_separator:  <!--more-->
 ---
 
 django는 python으로 구성된 웹 애플리케이션 프레임워크로 front/backend 구현이 가능하며, 
@@ -21,6 +22,7 @@ django_sample이 두개 있으면 헷갈리므로 이름을 app으로 바꿔준�
 django_sample => [app, manage.py]
 {% endhighlight %}
 
+<!--more-->
 이제 migrate를 하고 server를 띄운다. migrate는 django의 코드를 실제 DB에 반영하는 명령어이다. 해당 명령어를 수행하고 나면 Django를 실행하는데 필요한 기본 테이블들이 생성된다. 별도의 Database를 설정하지 않으면 python에서 기본 제공되는 sqlite DB(db.sqlite3)가 생성된다.
 
 {% highlight bash %}
