@@ -1,8 +1,10 @@
 ---
 layout: post
-title: 간단한 게임어플 GGPackage
+title: 간단한 안드로이드 게임어플 GGPackage
 date: 2018-10-21
-categories: [Android]
+categories: [ETC]
+tags: 
+  - android
 ---
 
 재미삼아 간단한 게임어플을 만들어보았다.

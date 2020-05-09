@@ -2,7 +2,9 @@
 layout: post
 title: 분산 트랜잭션(Distributed Transaction) 관련 용어 정리
 date: 2018-10-09
-categories: [DBMS]
+categories: [ETC]
+tags: 
+  - database
 ---
 
 출처 : [x/open문서](http://pubs.opengroup.org/onlinepubs/009680699/toc.pdf), [tmax technet](https://technet.tmaxsoft.com/upload/download/online/tibero/pver-20150504-000001/tibero_dev/ch04.html)
@@ -14,7 +16,7 @@ global transaction이라고도 불리며 여러개의 분산된 resource들(예:
 ## Distributed Transaction Processing(DTP)
 DTP 아키텍처는 여러 Application이 Transaction Manager를 이용하여 여러 다른 Resource Manager가 제공하는 리소스를 공유 할 수있게 해주는 표준 아키텍처 또는 인터페이스를 의미한다.
 
-![_config.yml]({{ site.baseurl }}/images/dtp.png)
+![_config.yml]({{ site.baseurl }}/assets/images/dtp.png)
 
 ## Application Program(AP)
 DTP에서 Application program은 transaction boundaries를 정의하고 특정 transaction들을 수행한다. TM에게 transaction의 시작과 끝, commit등을 요청하고 RM에게는 작업(ex: RM이 DBMS인 경우 SQL문 Execute)을 요청한다.
@@ -39,12 +41,12 @@ First Phase는 각 TM이 데이터베이스 노드에 커밋을 하기 위한 pr
 Second Phase(또는 Commit Phase)에서는 TM이 참여한 모든 데이터베이스 노드로부터 prepare 완료 메시지를 받을 때까지 대기한다.  
 prepare메시지 중 하나라도 ok가 아니라면 전체 데이터베이스에 롤백 메시지를 보낸다. 만약 모든 데이터베이스 노드로부터 prepare ok 메시지를 받으면 전체 데이터베이스에 커밋 메시지를 보낸다
 
-![_config.yml]({{ site.baseurl }}/images/2phase.png)
+![_config.yml]({{ site.baseurl }}/assets/images/2phase.png)
 
 ## XA
 XA는 분산트랜잭션 환경에서 TM과 RM사이에 통신을 담당하는 하나의 표준화된 interface를 의미한다. Oracle, Tibero, DB2등 벤더사별로 해당 interface에 맞는 동작을 구현해서 제공하고 있다. 즉 xa_open의 경우 오라클은 내부적으로 oracle server에 connection을 맺는 코드를 구현하고, 티베로는 내부적으로 tibero server에 connection을 맺는 코드를 구현한다.
 
-![_config.yml]({{ site.baseurl }}/images/xa.png)
+![_config.yml]({{ site.baseurl }}/assets/images/xa.png)
 
 XA의 c언어 interface는 아래와 같다.
 

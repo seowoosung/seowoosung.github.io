@@ -3,18 +3,20 @@ layout: post
 title: 클라이언트와 character encoding
 date: 2018-10-10
 categories: [ETC]
+tags: 
+  - characterset
 ---
 
 ### 1. client charset
 - tibero client의 charset을 나타내며 default는 MSWIN949다. client charset을 설정하는 방법은 두가지가 있는데 첫번째는 OS 환경변수 셋팅하는 방법이 있다. 
 
-![_config.yml]({{ site.baseurl }}/images/export_nls.png)
+![_config.yml]({{ site.baseurl }}/assets/images/export_nls.png)
 
 - 두번째로는 tbdsn.tbr에 셋팅해주는 방법이 있다. tbdsn.tbr의 설정이 OS 환경변수 설정을 오버라이딩한다.  
 client driver는 TB_NLS_LANG으로 셋팅된(없으면 default값) charset으로 character를 인식하며, server에 메시지를 보내거나 받을때 해당 charset을 기준으로 server charset과 변환이 일어난다. 참고로 TB_NLS_LANG이 유효하지 않은 값이면 tbsql 로그인할때 error가 발생한다.  
 아래 그림은 $TB_HOME/client/config/tbdsn.tbr파일이다.
 
-![_config.yml]({{ site.baseurl }}/images/tbdsn.png)
+![_config.yml]({{ site.baseurl }}/assets/images/tbdsn.png)
 
 ### 2. server charset
 - tibero server에 저장되는 data의 charset을 의미한다. 처음에 db를 구성할 때 설정가능하다. 경우에 따라 db를 다시 마운트하는 등 복잡한 과정을 거쳐서 charset을 변경할 수 있다.   
@@ -29,17 +31,17 @@ client driver는 TB_NLS_LANG으로 셋팅된(없으면 default값) charset으로
 - insert한 문자열이 server에 어떻게 저장되는지 보기위해 dump값을 select한다.
 
 **[상황1]** terminal encoding이 EUCKR, client charset($TB_NLS_LANG)이 EUCKR, server charset이 UTF8일때  
-![_config.yml]({{ site.baseurl }}/images/insert_utf8.png)
+![_config.yml]({{ site.baseurl }}/assets/images/insert_utf8.png)
 
 server charset에 맞게 UTF8로 잘 변환돼서 들어간다.
 
 **[상황2]** terminal encoding이 UTF8, client charset($TB_NLS_LANG)이 EUCKR, server charset이 UTF8일때  
-![_config.yml]({{ site.baseurl }}/images/insert_error.png)
+![_config.yml]({{ site.baseurl }}/assets/images/insert_error.png)
 
 client charset을 EUCKR로 인식하고 server charset에 맞게 변환하려 했으나 실제 input은 UTF8이기 때문에 변환이 실패하고 63(?의 아스키값)이 들어간다.
 
 **[상황3]** terminal encoding이 EUCKR, client charset($TB_NLS_LANG)이 UTF8, server charset이 UTF8일때  
-![_config.yml]({{ site.baseurl }}/images/insert_euckr.png)
+![_config.yml]({{ site.baseurl }}/assets/images/insert_euckr.png)
 
 client charset과 server charset이 동일하기 때문에 input data가 변환없이 EUCKR인코딩 그대로 들어간다. 하지만 나중에 db에 저장된 문자열을 출력하고자 할때 server charset이랑 실제 저장된 encoding이랑 맞지 않기때문에 깨져버린다.  
 
