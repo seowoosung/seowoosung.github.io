@@ -8,7 +8,7 @@ sidebar_link: true
 - 산업공학(industrial engineering)
 
 ### 관심분야
-- DBMS, Android, C++, ReactJS, Django
+- DBMS, Android, C++, ReactJS, Django, 수형
 
 ### Contact me
 - [ddungcum@gmail.com](mailto:ddungcum@gmail.com)
