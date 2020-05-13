@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Django 프레임워크 설치 및 실행
+title: 1. Django 프레임워크 설치 및 실행
 categories: [Architecture]
 excerpt_separator:  <!--more-->
 tags: 
@@ -40,4 +40,10 @@ Django application은 필요하다면 sqlite로부터 DB의 정보를 불러온�
 
 > 주의: Django runserver는 내장 python process로 실행되며, python은 GIL로 구현되어 있기때문에 멀티쓰레딩을 지원하지 않는다. 따라서 runserver를 사용하게 되면 단일 쓰레드로 모든 요청을 처리하게 되므로 production 환경에서는 사용하지 않아야한다.
 
+<br />
 ![_config.yml]({{ site.baseurl }}/assets/images/django.png)
+<br />
+만약 sqlite 대신 postgresql이나 mysql같은 DBMS를 연동해서 사용한다면 아래와 같은 모습이 된다. Django에서 사용하는 sqlite는 python으로 구현된 매우 가벼운 DBMS로 별도의 process로 실행되지 않지만, Mysql이나 Postgresql과 같은 DBMS는 별도의 프로세스들로 실행되며 향상된 성능과 다양한 기능을 제공한다.
+
+<br />
+![_config.yml]({{ site.baseurl }}/assets/images/django-postgresql.png)

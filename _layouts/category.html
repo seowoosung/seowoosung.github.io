@@ -8,7 +8,12 @@ layout: page
 
 <ul class="posts-list">
   {% assign category = page.category | default: page.title %}
-  {% for post in site.categories[category] %}
+  {% if page.sort_by_title %}
+  {% assign post_list = site.categories[category] | sort: "title" %}
+  {% else %}
+  {% assign post_list = site.categories[category] %}
+  {% endif %}
+  {% for post in post_list %}
     <li>
       <h3>
         <a href="{{ post.url | relative_url }}">
